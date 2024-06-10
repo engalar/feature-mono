@@ -9,5 +9,14 @@
                 "greeting": "Greetings"
             }
         }
+    },
+    "china-mirror": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "china-mirror": {
+                "mirror": "ubuntu",
+                "deb822": false
+            }
+        }
     }
 }
