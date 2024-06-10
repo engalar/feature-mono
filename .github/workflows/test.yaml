@@ -36,6 +36,7 @@ jobs:
         features:
           - color
           - hello
+          - china-mirror
     steps:
       - uses: actions/checkout@v3
 
