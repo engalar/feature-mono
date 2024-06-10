@@ -3,25 +3,34 @@ set -e
 
 # https://mirrors.ustc.edu.cn/help/debian.html#__tabbed_1_2
 
-# if $MIRROR is debian and $DEB822 is true, use the mirror provided by ustc
-if [ "$MIRROR" = "debian" ]; then
-    if [ "$DEB822" = true ]; then
-        echo "Using Debian deb822 mirror"
-        sudo sed -i 's|\w*.debian.org|mirrors.ustc.edu.cn|g' /etc/apt/sources.list.d/debian.sources
-    else
-        echo "Using Debian mirror"
-        sudo sed -i 's|\w*.debian.org|mirrors.ustc.edu.cn|g' /etc/apt/sources.list
-    fi
-
-elif [ "$MIRROR" = "ubuntu" ]; then
-    if [ "$DEB822" = true ]; then
-        echo "Using Ubuntu deb822 mirror"
-        sudo sed -i 's|\w*.ubuntu.com|mirrors.ustc.edu.cn|g' /etc/apt/sources.list.d/ubuntu.sources
-    else
-        echo "Using Ubuntu mirror"
-        sudo sed -i 's|\w*.ubuntu.com|mirrors.ustc.edu.cn|g' /etc/apt/sources.list
-    fi
+if [ "$(id -u)" -ne 0 ]; then
+    echo -e 'Script must be run as root. Use sudo, su, or add "USER root" to your Dockerfile before running this script.'
+    exit 1
 fi
+
+# Bring in ID, ID_LIKE, VERSION_ID, VERSION_CODENAME
+. /etc/os-release
+
+# if $ID_LIKE not equal to debian, throw error
+if [ "$ID_LIKE" != "debian" ]; then
+    echo "Only Debian is supported."
+    exit 1
+fi
+
+# $sourceListFile is if /etc/apt/sources.list exist, use it, otherwise use /etc/apt/sources.list.d/$ID.sources
+if [ -f /etc/apt/sources.list ]; then
+    sourceListFile="/etc/apt/sources.list"
+else
+    sourceListFile="/etc/apt/sources.list.d/$ID.sources"
+fi
+
+# if ubutnu ubuntu.com, otherwise debian.org
+sudo sed -i "s|http://.*.debian.org|http://mirrors.ustc.edu.cn|g" $sourceListFile
+sudo sed -i "s|http://.*.ubuntu.com|http://mirrors.ustc.edu.cn|g" $sourceListFile
+
+# update apt-get
+sudo apt-get update
+
 
 export http_proxy=http://host.docker.internal:29759
 
