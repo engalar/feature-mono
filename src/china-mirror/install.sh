@@ -7,19 +7,19 @@ set -e
 if [ "$MIRROR" = "debian" ]; then
     if [ "$DEB822" = true ]; then
         echo "Using Debian deb822 mirror"
-        sudo sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list.d/debian.sources
+        sudo sed -i 's|\w*.debian.org|mirrors.ustc.edu.cn|g' /etc/apt/sources.list.d/debian.sources
     else
         echo "Using Debian mirror"
-        sudo sed -i 's/deb.debian.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list
+        sudo sed -i 's|\w*.debian.org|mirrors.ustc.edu.cn|g' /etc/apt/sources.list
     fi
 
 elif [ "$MIRROR" = "ubuntu" ]; then
     if [ "$DEB822" = true ]; then
         echo "Using Ubuntu deb822 mirror"
-        sudo sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list.d/ubuntu.sources
+        sudo sed -i 's|\w*.ubuntu.com|mirrors.ustc.edu.cn|g' /etc/apt/sources.list.d/ubuntu.sources
     else
         echo "Using Ubuntu mirror"
-        sudo sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list
+        sudo sed -i 's|\w*.ubuntu.com|mirrors.ustc.edu.cn|g' /etc/apt/sources.list
     fi
 fi
 
