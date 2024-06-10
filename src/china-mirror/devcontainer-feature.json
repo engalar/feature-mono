@@ -1,7 +1,7 @@
 {
     "name": "China mirror",
     "id": "china-mirror",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A feature to china mirror",
     "options": {
         "mirror": {
