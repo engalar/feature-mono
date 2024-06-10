@@ -1,0 +1,27 @@
+{
+    "name": "China mirror",
+    "id": "china-mirror",
+    "version": "1.0.0",
+    "description": "A feature to china mirror",
+    "options": {
+        //mirror enum ubutnu or debian
+        "mirror": {
+            "type": "string",
+            "enum": [
+                "ubuntu",
+                "debian"
+            ],
+            "default": "ubuntu",
+            "description": "The mirror to use"
+        }
+        // boolean to DEB822 or not
+        "deb822": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether to use DEB822 or not"
+        }
+    },
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils"
+    ]
+}

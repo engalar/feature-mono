@@ -1,0 +1,10 @@
+{
+    "name": "China mirror",
+    "id": "china-mirror",
+    "version": "1.0.0",
+    "description": "A feature to china mirror",
+    "options": {},
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils"
+    ]
+}

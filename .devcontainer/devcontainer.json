@@ -1,5 +1,6 @@
 {
     "image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bookworm",
+    // "onCreateCommand ": "export http_proxy=http://host.docker.internal:29759&&sudo sed -i 's|deb.debian.org|mirrors.ustc.edu.cn|g' /etc/apt/sources.list",
     "customizations": {
         "vscode": {
             "settings": {
@@ -13,12 +14,17 @@
                 ]
             },
             "extensions": [
-                "mads-hartmann.bash-ide-vscode"
+                "mads-hartmann.bash-ide-vscode",
+                "FittenTech.Fitten-Code"
             ]
         }
     },
     "features": {
+        "./china": {},
         "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+    },
+    "containerEnv": {
+        "HTTP_PROXY": "http://host.docker.internal:29759"
     },
     "remoteUser": "node",
     "updateContentCommand": "npm install -g @devcontainers/cli"
