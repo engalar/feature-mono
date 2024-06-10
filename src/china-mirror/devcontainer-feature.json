@@ -12,7 +12,7 @@
             ],
             "default": "ubuntu",
             "description": "The mirror to use"
-        }
+        },
         "deb822": {
             "type": "boolean",
             "default": false,
