@@ -4,7 +4,6 @@
     "version": "1.0.0",
     "description": "A feature to china mirror",
     "options": {
-        //mirror enum ubutnu or debian
         "mirror": {
             "type": "string",
             "enum": [
@@ -14,7 +13,6 @@
             "default": "ubuntu",
             "description": "The mirror to use"
         }
-        // boolean to DEB822 or not
         "deb822": {
             "type": "boolean",
             "default": false,
